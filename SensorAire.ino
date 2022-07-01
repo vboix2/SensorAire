@@ -90,11 +90,13 @@ Air readData() {
   successes = 0;
 
   for (uint8_t i = 0; i < n_measures; i++) {
-    delay(1000);
-
-    error = sds.read(&p25, &p10);
-    hum = dht.readHumidity();
+    delay(500);
     temp = dht.readTemperature();
+    delay(500);
+    error = sds.read(&p25, &p10);
+    delay(500);
+    hum = dht.readHumidity();
+    
 
     if (error || isnan(temp) || isnan(hum)) {
       Serial.print("Error llegint les dades del sensor");
